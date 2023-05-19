@@ -26,10 +26,7 @@
 
 #### 2. Install [Docker Compose](https://docs.docker.com/compose/install/linux/)
 
-#### 3. Check if Docker is installed
-    docker run hello-world
-
-#### 4. Run the project
+#### 3. Run the project
     docker compose up --build
 
-#### 5. Your project will be started on [localhost](http://localhost:81)
+#### 4. Your project will be started on [localhost](http://localhost:81)
