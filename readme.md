@@ -31,3 +31,5 @@
 
 #### 4. Run the project
     docker compose up --build
+
+#### 5. Your project will be started on [localhost](http://localhost:81)
