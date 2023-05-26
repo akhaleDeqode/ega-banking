@@ -4,6 +4,7 @@ import com.ega.banking.constants.ErrorMessages;
 import com.ega.banking.constants.HttpStatusCodes;
 import com.ega.banking.dto.ExcetionDto;
 import jakarta.validation.ConstraintViolationException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -51,6 +52,26 @@ public class RestExceptionHandler {
     public ResponseEntity<?> handleConstraintViolationException() {
         return ResponseEntity.status(HttpStatusCodes.BAD_REQUEST)
                 .body(ExcetionDto.builder().message(ErrorMessages.INVALID_TRANSACTION_TYPE_EXCEPTION_MESSAGE)
+                        .build());
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<?> handleDataIntegrityViolationException(Exception ex) {
+        if (ex.getMessage().contains("Duplicate entry")) {
+            return ResponseEntity.status(HttpStatusCodes.BAD_REQUEST)
+                    .body(ExcetionDto.builder().message(ErrorMessages.USER_ALREADY_EXIST)
+                            .build());
+
+        }
+        return ResponseEntity.status(HttpStatusCodes.BAD_REQUEST)
+                .body(ExcetionDto.builder().message(ex.getMessage())
+                        .build());
+    }
+
+    @ExceptionHandler(UserNotExistException.class)
+    public ResponseEntity<?> handleUserNotExistException(Exception ex) {
+        return ResponseEntity.status(HttpStatusCodes.BAD_REQUEST)
+                .body(ExcetionDto.builder().message(ErrorMessages.INVALID_Email)
                         .build());
     }
 }

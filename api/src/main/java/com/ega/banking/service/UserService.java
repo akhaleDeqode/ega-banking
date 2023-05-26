@@ -2,6 +2,7 @@ package com.ega.banking.service;
 
 import com.ega.banking.entity.User;
 import com.ega.banking.error.InvalidUserIdException;
+import com.ega.banking.error.UserNotExistException;
 import com.ega.banking.repository.AccountRepository;
 import com.ega.banking.repository.UserRepository;
 import com.ega.banking.util.AccountUtil;
@@ -52,5 +53,12 @@ public class UserService {
 
     public User getUserByAccountId(long accountId) {
         return userRepository.findUserByAccountId(accountId);
+    }
+
+    public void checkIfUserExist(String email) {
+        User user = userRepository.checkIfUserExist(email);
+        if (user == null) {
+            throw new UserNotExistException();
+        }
     }
 }

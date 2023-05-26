@@ -12,4 +12,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("SELECT user FROM User user WHERE user.accountId = :accountId")
     User findUserByAccountId(long accountId);
+
+    @Query("SELECT user FROM User user WHERE user.email = :email")
+    User checkIfUserExist(String email);
 }

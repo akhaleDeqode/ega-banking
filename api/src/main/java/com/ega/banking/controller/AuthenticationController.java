@@ -30,6 +30,7 @@ public class AuthenticationController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+        userService.checkIfUserExist(loginRequest.getEmail());
         String token = authenticationService.loginUser(loginRequest);
         String email = jwtService.extractEmailFromJwt(token);
 
