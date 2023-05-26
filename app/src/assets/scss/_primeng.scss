@@ -1,0 +1,14 @@
+@use './vars' as vars;
+
+.p-component,
+.p-component {
+    font-family: vars.$primary-font !important;
+}
+
+.p-inputtext {
+    font-family: vars.$primary-font !important;
+}
+
+.program-dropdown {
+    width: 350px;
+}

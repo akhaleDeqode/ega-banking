@@ -1,0 +1,23 @@
+@use '/src/assets/scss/_vars.scss' as vars;
+
+.login-container {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    place-content: center;
+    background-color: vars.$bg-color;
+
+    .card {
+        min-width: 340px !important;
+        width: auto;
+        padding: 40px;
+        background-color: vars.$card-bg-color;
+        border: vars.$card-border;
+        border-radius: vars.$card-bd-radius;
+        box-shadow: vars.$card-shadow;
+    }
+}
+
+::ng-deep .p-input-icon-right>.p-inputtext {
+    width: 100% !important;
+}

@@ -1,0 +1,20 @@
+<form [formGroup]="withdrawalForm" (ngSubmit)="submit()"
+    class="d-flex flex-column gap-3 align-items-center justify-content-center login-form w-100 p-2">
+    <div class="form-group w-100">
+        <input formControlName="accountId" [class.input-invalid]="isFormSubmitted && FormControl['accountId'].invalid"
+            class="w-100" type="text" pInputText placeholder="Account ID">
+        <div *ngIf="isFormSubmitted && FormControl['accountId'].invalid" class="error-msg">
+            <p *ngIf="FormControl['accountId'].hasError('required')">Account ID is required</p>
+            <!-- <p *ngIf="FormControl['accountId'].hasError('pattern')">Invalid Account Id</p> -->
+        </div>
+    </div>
+    <div class="form-group w-100">
+        <p-inputNumber formControlName="amount" [class.input-invalid]="isFormSubmitted && FormControl['amount'].invalid"
+            inputId="integeronly" placeholder="Amount"></p-inputNumber>
+        <div *ngIf="isFormSubmitted && FormControl['amount'].invalid" class="error-msg">
+            <p *ngIf="FormControl['amount'].hasError('required')">Amount is required</p>
+            <p *ngIf="FormControl['amount'].hasError('min')">Amount should be greater than zero</p>
+        </div>
+    </div>
+    <p-button class="w-100" styleClass="w-100" type="submit" label="Withdraw"></p-button>
+</form>

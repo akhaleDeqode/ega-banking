@@ -1,0 +1,60 @@
+@use '/src/assets/scss/vars' as vars;
+
+.sidebar-container {
+    width: 250px;
+
+    .project-name-container {
+        height: 90px;
+    }
+}
+
+.mobile-sidebar-container {
+    display: block;
+    box-shadow: 0px 5px 25px black;
+}
+
+@media only screen and (min-width: 950px) {
+    .mobile-sidebar-container {
+        display: none;
+    }
+}
+
+::ng-deep .p-panelmenu .p-panelmenu-header>a {
+    background-color: transparent !important;
+    border: none !important;
+}
+
+::ng-deep .p-panelmenu .p-panelmenu-header:not(.p-highlight):not(.p-disabled)>a:hover {
+    background-color: transparent !important;
+    // outline: 2px solid vars.$primary-color !important;
+    color: vars.$primary-color !important;
+    border-radius: 6px !important;
+}
+
+::ng-deep .p-panelmenu .p-panelmenu-header>a:hover {
+    background-color: transparent !important;
+    // outline: 2px solid vars.$primary-color !important;
+    color: vars.$primary-color !important;
+    border-radius: 6px !important;
+}
+
+::ng-deep .p-panelmenu .p-panelmenu-header.p-highlight>a {
+    background-color: transparent !important;
+    border: none !important;
+    color: vars.$primary-color !important;
+    border-radius: 6px !important;
+}
+
+::ng-deep .p-panelmenu .p-panelmenu-content {
+    border: none;
+    margin-left: 10px;
+}
+
+::ng-deep .p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link {
+    margin-left: 10px !important;
+}
+
+::ng-deep .p-tabmenu .p-tabmenu-nav {
+    display: flex;
+    justify-content: space-around;
+}

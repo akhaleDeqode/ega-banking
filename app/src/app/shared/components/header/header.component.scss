@@ -1,0 +1,14 @@
+.header-container {
+    width: auto;
+    // gap: 30px;
+}
+
+::ng-deep .select-program {
+    // height: 40px !important;
+    width: 300px;
+    margin-right: 30px;
+}
+
+::ng-deep .p-menu.p-menu-overlay {
+    margin-top: 10px;
+}
