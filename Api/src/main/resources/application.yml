@@ -1,0 +1,20 @@
+server:
+  port: 8080
+  forward-headers-strategy: framework
+spring:
+  application:
+    name: EGA-Bank
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: db_username
+    url: jdbc:mysql://mysql-db:3306/ega-bank
+    platform: mysql
+    password: db_password
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+
