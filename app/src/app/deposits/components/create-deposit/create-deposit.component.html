@@ -16,6 +16,7 @@
         <div *ngIf="isFormSubmitted && FormControl['amount'].invalid" class="error-msg">
             <p *ngIf="FormControl['amount'].hasError('required')">Amount is required</p>
             <p *ngIf="FormControl['amount'].hasError('min')">Amount should be greater than zero</p>
+            <p *ngIf="FormControl['amount'].hasError('max')">Amount should not be greater than 1,000,000</p>
         </div>
     </div>
     <p-button class="w-100" styleClass="w-100" type="submit" label="Deposit"></p-button>

@@ -9,7 +9,7 @@ import { DashboardService } from 'src/app/core/services/dashboard.service';
 })
 export class RecentTransactionsComponent {
 
-  transactionList!: any[];
+  transactionList: any[] = [];
   private _unsubscribe$ = new Subject<boolean>();
 
   constructor(

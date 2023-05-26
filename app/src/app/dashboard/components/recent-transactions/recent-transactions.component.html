@@ -14,6 +14,9 @@
             </p>
         </li>
     </ul>
+
+    <small *ngIf="transactionList?.length">
+        Last <b>{{transactionList.length && transactionList.length > 10 ? 10 : transactionList.length}} </b>transactions</small>
 </div>
 
 <ng-template #emptyScreen>
