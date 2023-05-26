@@ -23,6 +23,6 @@ export class ErrorHandlerService {
       this._authService.logout();
       this._router.navigate(['/auth/login']);
     }
-    this._toasterService.error('Error', error?.error?.message || 'Something went wrong');
+    this._toasterService.error('Error', error?.message || 'Something went wrong');
   }
 }
