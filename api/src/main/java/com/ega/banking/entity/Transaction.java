@@ -5,8 +5,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,15 +28,13 @@ public class Transaction {
 
 
     @Column(nullable = false)
-    @Min(value = 1, message = "Amount must be greater than or equal to 1")
-    @Max(value = 1000000, message = "Amount must be less than or equal to 10000")
     private int amount;
-    @Column(nullable = false)
 
+    @Column(nullable = false)
     private LocalDate transactionDate;
     {
         transactionDate = LocalDate.now();
     }
-    private String transactionType;
 
+    private String transactionType;
 }

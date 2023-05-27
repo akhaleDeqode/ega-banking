@@ -33,7 +33,7 @@ public class UserService {
     public void registerUser(User user) {
         List<Long> allAccountNumber= accountRepository.getAllAccountId();
         Long accountNumber = accountUtil.generateAccountNumber(allAccountNumber);
-        accountUtil.addAccount(user.getBankId(), accountNumber);
+        accountUtil.addAccount(accountNumber);
         user.setAccountId(accountNumber);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
@@ -56,8 +56,9 @@ public class UserService {
     }
 
     public void checkIfUserExist(String email) {
-        User user = userRepository.checkIfUserExist(email);
-        if (user == null) {
+        boolean checkEmailExist = userRepository.existsByEmail(email);
+
+        if (!checkEmailExist) {
             throw new UserNotExistException();
         }
     }

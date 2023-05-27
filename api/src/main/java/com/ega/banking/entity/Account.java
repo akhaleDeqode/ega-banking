@@ -22,7 +22,7 @@ public class Account {
 
     @Id
     private long accountId;
-    private long bankId;
+
     @Column(columnDefinition = "integer default " + ApplicationConstants.DEFAULT_BALANCE)
     private int balance;
 

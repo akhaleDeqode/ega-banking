@@ -25,6 +25,4 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
 
     @Query("SELECT COUNT(*) AS transaction_count FROM Transaction transaction WHERE transaction.accountId = :accountId and LOWER(transaction.transactionType) = LOWER(:transactionType)")
     int getNumberOfTransactionsByType(long accountId, String transactionType);
-
-
 }

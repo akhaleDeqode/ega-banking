@@ -4,11 +4,14 @@ public class ApplicationConstants {
 
     public static final int DEFAULT_BALANCE = 0;
 
-    public static final String INVALID_FIRST_NAME = "First name can't be blank";
-    public static final String INVALID_LAST_NAME = "Last name can't be blank";
-    public static final String INVALID_PASSWORD = "Password can't be blank";
-    public static final String INVALID_EMAIL = "Please enter a valid email";
-    public static final String INVALID_TOKEN = "Please provide a valid token";
+    public static final String INVALID_FIRST_NAME = "Invalid firstname";
+    public static final String INVALID_LAST_NAME = "Invalid lastname";
+    public static final String INVALID_PASSWORD = "Invalid password";
+    public static final String INVALID_EMAIL = "Invalid email";
+    public static final String INVALID_TOKEN = "Invalid token";
+    public static final String WEAK_PASSWORD= "Password must contain at least 1 upper case letter, " +
+            "at least 1 lower case letter, " +
+            "at least 1 number and at least 1 special character and must be of size 8";
 
     private ApplicationConstants() {}
 }
