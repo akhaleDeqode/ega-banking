@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Subject, takeUntil } from 'rxjs';
+import { EMAIL_REGEX } from 'src/app/core/constants/custom-validataros';
 import { Login } from 'src/app/core/models/auth.model';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { LocalstorageService } from 'src/app/core/services/localstorage.service';
@@ -29,7 +30,7 @@ export class LoginComponent {
 
   ngOnInit(): void {
     this.loginForm = this._formBuilder.group({
-      email: [null, [Validators.required, Validators.email]],
+      email: [null, [Validators.required, Validators.pattern(EMAIL_REGEX)]],
       password: [null, Validators.required]
     });
   }
