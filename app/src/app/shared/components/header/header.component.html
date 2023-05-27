@@ -2,7 +2,7 @@
     <b class="m-0 fw-700 text-muted">{{breadCrumb}}</b>
     <div class="d-flex align-items-center">
         <div (click)="menu.toggle($event)" class="d-flex gap-2 cursor-pointer align-items-center">
-            <p-avatar icon="pi {{userData ? 'pi-user' : 'pi-spin pi-spinner'}}" size="large"
+            <p-avatar icon="pi pi-user" size="large"
                 styleClass="bg-primary-color color-white" shape="circle"></p-avatar>
             <div class="user-detail d-flex flex-column gap-0">
                 <b>{{userData?.firstName}} {{userData?.lastName}}</b>

@@ -36,8 +36,8 @@ export class HeaderComponent {
   }
 
   /**
- * Function to update breadcrumb
- */
+   * Function to update breadcrumb
+   */
   updateBreadCrumb(): void {
     const url = this._router.url;
     switch (url) {

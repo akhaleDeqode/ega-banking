@@ -18,7 +18,7 @@ const routes: Routes = [
     path: '',
     component: ProjectLayoutComponent,
     children: projectRoutes,
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   }
 ];
 
