@@ -6,21 +6,28 @@
             class="d-flex flex-column gap-3 align-items-center justify-content-center login-form w-100">
             <div class="d-flex gap-3">
                 <div class="form-group">
-                    <input formControlName="firstName"
+                    <input formControlName="firstName" (blur)="_utility.removeSpaces(FormControl['firstName'])"
                         [class.input-invalid]="isFormSubmitted && FormControl['firstName'].invalid" type="text"
                         placeholder="First name" class="w-100" pInputText>
                     <div *ngIf="isFormSubmitted && FormControl['firstName'].invalid" class="error-msg">
                         <p *ngIf="FormControl['firstName'].hasError('required')">First name is required</p>
-                        <p *ngIf="FormControl['firstName'].hasError('pattern')">Invalid First name</p>
+                        <p *ngIf="FormControl['firstName'].hasError('minlength')">At least 2 characters are required</p>
+                        <p *ngIf="FormControl['firstName'].hasError('maxlength')">Maximum 50 characters are allowed</p>
+                        <p 
+                            *ngIf="FormControl['firstName'].hasError('pattern') && !FormControl['firstName'].hasError('minlength') && !FormControl['firstName'].hasError('maxlength')">
+                            Invalid first name
+                        </p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <input formControlName="lastName"
+                    <input formControlName="lastName" (blur)="_utility.removeSpaces(FormControl['lastName'])"
                         [class.input-invalid]="isFormSubmitted && FormControl['lastName'].invalid" type="text"
                         placeholder="Last name" class="w-100" pInputText>
                     <div *ngIf="isFormSubmitted && FormControl['lastName'].invalid" class="error-msg">
                         <p *ngIf="FormControl['lastName'].hasError('required')">Last name is required</p>
-                        <p *ngIf="FormControl['lastName'].hasError('pattern')">Invalid First name</p>
+                        <p *ngIf="FormControl['lastName'].hasError('minlength')">At least 2 characters are required</p>
+                        <p *ngIf="FormControl['lastName'].hasError('maxlength')">Maximum 50 characters are allowed</p>
+                        <p *ngIf="FormControl['lastName'].hasError('pattern')">Invalid last name</p>
                     </div>
                 </div>
 
@@ -30,14 +37,28 @@
                     class="w-100" type="email" pInputText placeholder="Email">
                 <div *ngIf="isFormSubmitted && FormControl['email'].invalid" class="error-msg">
                     <p *ngIf="FormControl['email'].hasError('required')">Email is required</p>
-                    <p *ngIf="FormControl['email'].hasError('email')">Invalid Email</p>
+                    <p *ngIf="FormControl['email'].hasError('pattern')">Invalid Email</p>
                 </div>
             </div>
             <div class="form-group w-100">
                 <p-password formControlName="password"
                     [class.input-invalid]="isFormSubmitted && FormControl['password'].invalid" styleClass="w-100"
-                    class="p-password w-100" [toggleMask]="true" [feedback]="false" placeholder="Password">
-                </p-password>
+                    class="p-password w-100" [toggleMask]="true" placeholder="Password">
+                    <ng-template pTemplate="header">
+                        <h6>Pick a password</h6>
+                    </ng-template>
+                    <ng-template pTemplate="footer">
+                        <!-- <p-divider></p-divider> -->
+                        <p class="mt-2">Suggestions</p>
+                        <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                            <li>At least one lowercase</li>
+                            <li>At least one uppercase</li>
+                            <li>At least one numeric</li>
+                            <li>At least one symbol</li>
+                            <li>Minimum 8 characters</li>
+                            <li>Maximum 16 characters</li>
+                        </ul>
+                    </ng-template>                </p-password>
                 <div *ngIf="isFormSubmitted && FormControl['password'].invalid" class="error-msg">
                     <p *ngIf="FormControl['password'].hasError('required')">Password is required</p>
                     <p *ngIf="FormControl['password'].hasError('minlength')">Minimum 8 characters are required</p>
@@ -45,7 +66,6 @@
                     <p *ngIf="FormControl['password'].hasError('pattern') && !FormControl['password'].hasError('minlength') && !FormControl['password'].hasError('maxlength')">
                         Must contain One uppercase, lowercase, number and symbol
                     </p>
-
                 </div>
             </div>
             <p-button class="w-100" styleClass="w-100" type="submit" label="Register"></p-button>

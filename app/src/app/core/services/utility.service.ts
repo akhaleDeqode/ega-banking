@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -21,6 +22,15 @@ export class UtilityService {
     } else {
       return false;
     }
+  }
+
+  /**
+   * Function to set trimmed value to form control
+   * @param control Form control
+   */
+  removeSpaces(control: AbstractControl<any, any>): void {
+    let value: string = control.value;
+    control.setValue(value && value.trim());
   }
 
   /**

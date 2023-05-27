@@ -2,9 +2,11 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
+import { EMAIL_REGEX, NAME_REGEX, PASSWORD_REGEX } from 'src/app/core/constants/custom-validataros';
 import { Signup } from 'src/app/core/models/auth.model';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
+import { UtilityService } from 'src/app/core/services/utility.service';
 
 @Component({
   selector: 'app-signup',
@@ -21,15 +23,16 @@ export class SignupComponent {
     private _formBuilder: FormBuilder,
     private _authService: AuthService,
     private _router: Router,
-    private _toasterService: ToasterService
+    private _toasterService: ToasterService,
+    public _utility: UtilityService
   ) { }
 
   ngOnInit(): void {
     this.signupForm = this._formBuilder.group({
-      firstName: [null, [Validators.required]],
-      lastName: [null, [Validators.required]],
-      email: [null, [Validators.required, Validators.email]],
-      password: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(16), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/)]]
+      firstName: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(50), Validators.pattern(NAME_REGEX)]],
+      lastName: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(50), Validators.pattern(NAME_REGEX)]],
+      email: [null, [Validators.required, Validators.pattern(EMAIL_REGEX)]],
+      password: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(16), Validators.pattern(PASSWORD_REGEX)]]
     });
   }
 
