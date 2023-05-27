@@ -9,8 +9,15 @@
         </div>
     </div>
     <div class="form-group w-100">
-        <p-inputNumber formControlName="amount" [class.input-invalid]="isFormSubmitted && FormControl['amount'].invalid"
-            inputId="integeronly" placeholder="Amount"></p-inputNumber>
+        <div class="d-flex flex-column">
+            <p-inputNumber formControlName="amount"
+                [class.input-invalid]="isFormSubmitted && FormControl['amount'].invalid" inputId="integeronly"
+                placeholder="Amount">
+            </p-inputNumber>
+            <small *ngIf="!(FormControl['amount'].invalid && isFormSubmitted)" class="mt-1">
+                Enter amount between 1 to 1,000,000
+            </small>
+        </div>
         <!-- <input (keypress)="_utility.numberOnly($event)" formControlName="amount" [class.input-invalid]="isFormSubmitted && FormControl['amount'].invalid"
             class="w-100" type="text" pInputText placeholder="Amount"> -->
         <div *ngIf="isFormSubmitted && FormControl['amount'].invalid" class="error-msg">
