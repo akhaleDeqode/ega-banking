@@ -31,7 +31,7 @@ export class CreateWithdrawlComponent {
   ngOnInit(): void {
     this.withdrawalForm = this._formBuilder.group({
       accountId: [null, Validators.required],
-      amount: [null, [Validators.required, Validators.min(0), Validators.max(1000000)]],
+      amount: [null, [Validators.required, Validators.min(1), Validators.max(1000000)]],
       transactionType: ['withdraw']
     });
     this.getStoreData();

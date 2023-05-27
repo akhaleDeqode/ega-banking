@@ -62,7 +62,7 @@ export class WithdrawlListComponent {
 
   onCloseDialog() {
     this.ref.onClose.subscribe((res: any) => {
-      this.ngOnInit();
+      if (res) this.ngOnInit();
     });
   }
 

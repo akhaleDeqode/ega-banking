@@ -62,7 +62,7 @@ export class DepositListComponent {
 
   onCloseDialog(): void {
     this.ref.onClose.subscribe((res: any) => {
-      this.ngOnInit();
+      if (res) this.ngOnInit();
     });
   }
 
