@@ -1,7 +1,8 @@
 <div class="card p-4 w-100">
     <p class="fw-700 fs-16">Recent Transactions</p>
     <ng-container *ngIf="transactionList.length; else emptyScreen">
-        <app-transaction-list [dataList]="transactionList" [activePage]="activePage" [totalData]="totalData"></app-transaction-list>
+        <app-transaction-list [dataList]="transactionList" [activePage]="activePage" [totalData]="totalData">
+        </app-transaction-list>
     </ng-container>
 </div>
 

@@ -1,6 +1,6 @@
-<div class="card">
+<div class="card p-3">
 
-    <div [ngClass]="{'w-100 p-5 justify-content-center': !depositsList.length}" class="d-flex justify-content-end m-3">
+    <div [ngClass]="{'w-100 p-5 justify-content-center': !depositsList.length}" class="d-flex justify-content-end">
         <button pbutton="" icon="pi pi-plus" label="New"
             class="float-end p-element p-button-outlined w-full sm:w-auto flex-order-0 sm:flex-order-1 p-button p-component"
             (click)="showAddModal()">
@@ -10,7 +10,8 @@
     </div>
 
     <ng-container *ngIf="depositsList.length">
-        <app-transaction-list [dataList]="depositsList" [activePage]="activePage" [totalData]="totalData"></app-transaction-list>
+        <app-transaction-list [dataList]="depositsList" [activePage]="activePage" [totalData]="totalData">
+        </app-transaction-list>
         <!-- <p-table [value]="depositsList" [totalRecords]="totalData" [lazy]="true" [first]="(10*currentPage)"
             (onPage)="onPageChange($event)" [resizableColumns]="true" styleClass="p-datatable-gridlines"
             [tableStyle]="{'min-width': '40rem'}" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"

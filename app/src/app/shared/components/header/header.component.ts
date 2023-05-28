@@ -40,19 +40,15 @@ export class HeaderComponent {
    */
   updateBreadCrumb(): void {
     const url = this._router.url;
-    switch (url) {
-      case '/dashboard/home':
-        this.breadCrumb = 'Dashboard';
-        break;
-      case '/withdrawls/list':
-        this.breadCrumb = 'Withdrawls';
-        break;
-      case '/deposits/list':
-        this.breadCrumb = 'Deposits';
-        break;
-      default:
-        this.breadCrumb = '';
-        break;
+
+    if (url.includes('/dashboard/home')) {
+      this.breadCrumb = "Dashboard";
+    } else if (url.includes('/withdrawls/list')) {
+      this.breadCrumb = "Withdrawals";
+    } else if (url.includes('/deposits/list')) {
+      this.breadCrumb = "Deposits";
+    } else {
+      this.breadCrumb = "";
     }
   }
 

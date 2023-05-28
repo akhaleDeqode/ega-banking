@@ -16,7 +16,7 @@ export class WithdrawlListComponent {
   ref!: DynamicDialogRef;
   withdrawsList: any[] = [];
   totalData: number = 0;
-  currentPage: number = 0;
+  activePage: number = 0;
   private _unsubscribe$ = new Subject<boolean>();
 
   constructor(
@@ -30,7 +30,7 @@ export class WithdrawlListComponent {
     this._activatedRoute.queryParams.subscribe((res: any) => {
       this.getAllWithdraws(res);
       if (res?.pageNumber) {
-        this.currentPage = res?.pageNumber;
+        this.activePage = (res?.pageNumber * 10);
       }
     });
   }
