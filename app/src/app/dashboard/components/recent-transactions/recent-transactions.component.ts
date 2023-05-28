@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { DashboardService } from 'src/app/core/services/dashboard.service';
-import { UtilityService } from 'src/app/core/services/utility.service';
 
 @Component({
   selector: 'app-recent-transactions',
@@ -18,8 +17,7 @@ export class RecentTransactionsComponent {
 
   constructor(
     private _dashboardService: DashboardService,
-    private _activatedRoute: ActivatedRoute,
-    private _utility: UtilityService
+    private _activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -39,12 +37,6 @@ export class RecentTransactionsComponent {
         this.totalData = res?.listSize;
       }
     });
-  }
-
-  onPageChange(event: any): void {
-    // console.log(event);
-    const payload = { pageNumber: event.page }
-    this._utility.addQueryParamsToUrl(payload);
   }
 
   ngOnDestroy(): void {

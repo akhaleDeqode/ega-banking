@@ -1,29 +1,7 @@
 <div class="card p-4 w-100">
     <p class="fw-700 fs-16">Recent Transactions</p>
-
-    <ul *ngIf="transactionList?.length; else emptyScreen" class="transaction-entry p-0">
-        <li *ngFor="let item of transactionList" class="d-flex justify-content-between w-100 border-bottom py-3">
-            <div>
-                <p pTooltip="Account Id" class="m-0 fw-600">{{item?.accountId}}</p>
-                <span class="m-0">
-                    <span class="fs-14">Ref. ID </span>
-                    <span class="fw-600">{{item?.transactionId}}</span>
-                </span>
-            </div>
-            <div class="">
-                <div class="d-flex align-items-center gap-2">
-                    <p class="m-0 fw-700 fs-22">${{item?.amount}}</p>
-                    <i [ngClass]="{'pi-arrow-down-left text-success': item?.transactionType == 'deposit', 'pi-arrow-up-right text-danger': item?.transactionType == 'withdraw'}"
-                        class="pi">
-                    </i>
-                </div>
-                <span>23-06-2014</span>
-            </div>
-        </li>
-    </ul>
-    <ng-container *ngIf="transactionList?.length">
-        <p-paginator (onPageChange)="onPageChange($event)" [first]="activePage" [rows]="10" [totalRecords]="totalData">
-        </p-paginator>
+    <ng-container *ngIf="transactionList.length; else emptyScreen">
+        <app-transaction-list [dataList]="transactionList" [activePage]="activePage" [totalData]="totalData"></app-transaction-list>
     </ng-container>
 </div>
 
