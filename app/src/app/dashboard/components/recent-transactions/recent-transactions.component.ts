@@ -11,16 +11,8 @@ import { UtilityService } from 'src/app/core/services/utility.service';
 })
 export class RecentTransactionsComponent {
 
-  transactionList: any[] = [
-    {
-      "transactionId": 12,
-      "accountId": 812766075,
-      "amount": 19,
-      "transactionDate": "2023-05-27",
-      "transactionType": "withdraw"
-    }
-  ];
-  totalData: number = 8;
+  transactionList: any[] = [];
+  totalData: number = 0;
   activePage: number = 0;
   private _unsubscribe$ = new Subject<boolean>();
 

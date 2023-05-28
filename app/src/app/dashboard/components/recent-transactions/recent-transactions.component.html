@@ -21,10 +21,14 @@
             </div>
         </li>
     </ul>
-    <p-paginator (onPageChange)="onPageChange($event)" [first]="activePage" [rows]="10"
-        [totalRecords]="36"></p-paginator>
+    <ng-container *ngIf="transactionList?.length">
+        <p-paginator (onPageChange)="onPageChange($event)" [first]="activePage" [rows]="10" [totalRecords]="totalData">
+        </p-paginator>
+    </ng-container>
 </div>
 
 <ng-template #emptyScreen>
-    <app-empty-screen></app-empty-screen>
+    <div class="p-5">
+        <app-empty-screen></app-empty-screen>
+    </div>
 </ng-template>
