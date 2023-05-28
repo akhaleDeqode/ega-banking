@@ -24,7 +24,7 @@ export class RecentTransactionsComponent {
     this._activatedRoute.queryParams.subscribe((res: any) => {
       this.getAllTransactions(res);
       if (res?.pageNumber) {
-        this.activePage = Math.floor(res?.pageNumber / 10);
+        this.activePage = (res.pageNumber * 10);
       }
     });
   }

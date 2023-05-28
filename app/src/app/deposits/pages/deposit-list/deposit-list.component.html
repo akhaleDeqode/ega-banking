@@ -10,31 +10,7 @@
     </div>
 
     <ng-container *ngIf="depositsList.length">
-        <ul *ngIf="depositsList?.length; else emptyScreen" class="transaction-entry p-0">
-            <li *ngFor="let item of depositsList" class="d-flex justify-content-between w-100 border-bottom p-3">
-                <div>
-                    <p pTooltip="Account Id" class="m-0 fw-600">{{item?.accountId}}</p>
-                    <span class="m-0">
-                        <span class="fs-14">Ref. ID </span>
-                        <span class="fw-600">{{item?.transactionId}}</span>
-                    </span>
-                </div>
-                <div class="">
-                    <div class="d-flex align-items-center gap-2">
-                        <p class="m-0 fw-700 fs-22">${{item?.amount}}</p>
-                        <i [ngClass]="{'pi-arrow-down-left text-success': item?.transactionType == 'deposit', 'pi-arrow-up-right text-danger': item?.transactionType == 'withdraw'}"
-                            class="pi">
-                        </i>
-                    </div>
-                    <span>23-06-2014</span>
-                </div>
-            </li>
-        </ul>
-        <ng-container *ngIf="depositsList?.length">
-            <p-paginator (onPageChange)="onPageChange($event)" [first]="(10*currentPage)" [rows]="10" [totalRecords]="totalData">
-            </p-paginator>
-        </ng-container>
-    
+        <app-transaction-list [dataList]="depositsList" [activePage]="activePage" [totalData]="totalData"></app-transaction-list>
         <!-- <p-table [value]="depositsList" [totalRecords]="totalData" [lazy]="true" [first]="(10*currentPage)"
             (onPage)="onPageChange($event)" [resizableColumns]="true" styleClass="p-datatable-gridlines"
             [tableStyle]="{'min-width': '40rem'}" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"

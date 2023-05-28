@@ -15,7 +15,7 @@ export class DepositListComponent {
   dialogRef!: DynamicDialogRef;
   depositsList: any[] = [];
   totalData: number = 0;
-  currentPage: number = 0;
+  activePage: number = 0;
   private _unsubscribe$ = new Subject<boolean>();
 
   constructor(
@@ -29,7 +29,7 @@ export class DepositListComponent {
     this._activatedRoute.queryParams.subscribe((res: any) => {
       this.getAllDeposits(res);
       if (res?.pageNumber) {
-        this.currentPage = res?.pageNumber;
+        this.activePage = (res.pageNumber * 10);
       }
     });
   }
