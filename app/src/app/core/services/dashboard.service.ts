@@ -19,7 +19,7 @@ export class DashboardService {
 
   getAllTransactions(queryParams?: any): Observable<any> {
     const query = this._utility.returnQueryParams(queryParams);
-    return this._http.get(`${this._base}transaction/get`).pipe(timeout(75000), catchError((error: HttpErrorResponse) => {
+    return this._http.get(`${this._base}transaction/get${query}`).pipe(timeout(75000), catchError((error: HttpErrorResponse) => {
       throw error;
     }));
   }
