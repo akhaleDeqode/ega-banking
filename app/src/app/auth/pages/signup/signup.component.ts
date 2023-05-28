@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
-import { EMAIL_REGEX, NAME_REGEX, PASSWORD_REGEX } from 'src/app/core/constants/custom-validataros';
+import { EMAIL_REGEX, MAX_FIRST_NAME, MAX_PASSWORD, MAX_lAST_NAME, MIN_FIRST_NAME, MIN_PASSWORD, NAME_REGEX, PASSWORD_REGEX } from 'src/app/core/constants/custom-validators';
+import { ErrorMessages } from 'src/app/core/constants/error-messages';
 import { Signup } from 'src/app/core/models/auth.model';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
@@ -17,6 +18,7 @@ export class SignupComponent {
 
   signupForm!: FormGroup;
   isFormSubmitted: boolean = false;
+  errorMessage = new ErrorMessages();
   private _unsubscribe$ = new Subject<boolean>();
 
   constructor(
@@ -29,10 +31,10 @@ export class SignupComponent {
 
   ngOnInit(): void {
     this.signupForm = this._formBuilder.group({
-      firstName: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(50), Validators.pattern(NAME_REGEX)]],
-      lastName: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(50), Validators.pattern(NAME_REGEX)]],
+      firstName: [null, [Validators.required, Validators.minLength(MIN_FIRST_NAME), Validators.maxLength(MAX_FIRST_NAME), Validators.pattern(NAME_REGEX)]],
+      lastName: [null, [Validators.required, Validators.minLength(MIN_FIRST_NAME), Validators.maxLength(MAX_lAST_NAME), Validators.pattern(NAME_REGEX)]],
       email: [null, [Validators.required, Validators.pattern(EMAIL_REGEX)]],
-      password: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(16), Validators.pattern(PASSWORD_REGEX)]]
+      password: [null, [Validators.required, Validators.minLength(MIN_PASSWORD), Validators.maxLength(MAX_PASSWORD), Validators.pattern(PASSWORD_REGEX)]]
     });
   }
 

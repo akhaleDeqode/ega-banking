@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MessageService } from 'primeng/api';
 import { Subject, takeUntil } from 'rxjs';
-import { EMAIL_REGEX } from 'src/app/core/constants/custom-validataros';
+import { EMAIL_REGEX } from 'src/app/core/constants/custom-validators';
+import { ErrorMessages } from 'src/app/core/constants/error-messages';
 import { Login } from 'src/app/core/models/auth.model';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { LocalstorageService } from 'src/app/core/services/localstorage.service';
@@ -18,6 +18,7 @@ export class LoginComponent {
 
   isFormSubmitted: boolean = false;
   loginForm!: FormGroup;
+  errorMessage = new ErrorMessages();
   private _unsubscribe$ = new Subject<boolean>();
 
   constructor(
