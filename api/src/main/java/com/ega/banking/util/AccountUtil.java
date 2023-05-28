@@ -3,10 +3,8 @@ package com.ega.banking.util;
 import com.ega.banking.config.JwtService;
 import com.ega.banking.entity.Account;
 import com.ega.banking.entity.User;
-import com.ega.banking.repository.AccountRepository;
 import com.ega.banking.repository.UserRepository;
 import com.ega.banking.service.AccountService;
-import com.ega.banking.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -35,10 +33,9 @@ public class AccountUtil {
         return newNumber;
     }
 
-    public void addAccount(long bankId, Long accountNumber) {
+    public void addAccount(Long accountNumber) {
         Account account = Account.builder()
                 .accountId(accountNumber)
-                .bankId(bankId)
                 .build();
         accountService.addAccountOnUserRegistration(account);
     }

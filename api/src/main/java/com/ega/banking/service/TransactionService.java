@@ -6,11 +6,11 @@ import com.ega.banking.entity.Account;
 import com.ega.banking.entity.Transaction;
 import com.ega.banking.dto.TransactionType;
 import com.ega.banking.error.InsufficientBalanceException;
+import com.ega.banking.error.InvalidAmountException;
 import com.ega.banking.error.InvalidTransactionTypeException;
 import com.ega.banking.repository.TransactionRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -32,6 +32,9 @@ public class TransactionService {
     public ResponseEntity<?> handleTransaction(Transaction transaction) throws InsufficientBalanceException{
 
         Account account = accountService.getAccountById(transaction.getAccountId());
+        if (transaction.getAmount() < 1 || transaction.getAmount() > 1000000)
+            throw new InvalidAmountException();
+
         List<Transaction> pastTransactions = account.getTransactions();
 
         int currentBalance = account.getBalance();
@@ -85,5 +88,4 @@ public class TransactionService {
     private int getNumberOfTransactionsByType(long accountId, String transactionType) {
         return transactionRepository.getNumberOfTransactionsByType(accountId, transactionType);
     }
-
 }

@@ -52,7 +52,6 @@ class UserServiceTest {
     void registerUser_ValidUser_ShouldReturnRegisteredUser() {
         // Arrange
         User user = User.builder()
-                .bankId(TestConstants.BANK_ID)
                 .password(TestConstants.USER_PASSWORD)
                 .build();
 

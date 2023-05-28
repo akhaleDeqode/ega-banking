@@ -49,10 +49,9 @@ class AccountUtilTest {
 
         Account account = Account.builder()
                 .accountId(accountNumber)
-                .bankId(bankId)
                 .build();
 
-        accountUtil.addAccount(bankId, accountNumber);
+        accountUtil.addAccount(accountNumber);
 
         // Verify that the accountService's addAccountOnUserRegistration method was called with the correct account
         verify(accountService, times(1)).addAccountOnUserRegistration(account);

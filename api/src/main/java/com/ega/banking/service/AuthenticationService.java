@@ -2,6 +2,7 @@ package com.ega.banking.service;
 
 import com.ega.banking.config.JwtService;
 import com.ega.banking.dto.LoginRequest;
+import com.ega.banking.error.WrongPasswordException;
 import com.ega.banking.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,12 +22,16 @@ public class AuthenticationService {
     JwtService jwtService;
 
     public String loginUser(LoginRequest loginRequest) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        loginRequest.getEmail(),
-                        loginRequest.getPassword()
-                )
-        );
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            loginRequest.getEmail(),
+                            loginRequest.getPassword()
+                    )
+            );
+        } catch (Exception e) {
+            throw new WrongPasswordException();
+        }
 
         var user = userRepository.findByEmail(loginRequest.getEmail());
         String token = jwtService.generateToken(user);
