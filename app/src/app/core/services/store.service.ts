@@ -18,7 +18,7 @@ export class StoreService {
   private _store$: Observable<UserStore> = this._userData$.asObservable();
   constructor() { }
 
-  get userData(): Observable<UserStore> {
+  get UserData$(): Observable<UserStore> {
     return this._store$;
   }
 

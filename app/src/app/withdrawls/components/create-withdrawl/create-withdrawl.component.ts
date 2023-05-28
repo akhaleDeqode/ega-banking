@@ -38,7 +38,7 @@ export class CreateWithdrawlComponent {
   }
 
   getStoreData(): void {
-    this._storeService.userData.pipe(takeUntil(this._unsubscribe$)).subscribe((res: UserStore) => {
+    this._storeService.UserData$.pipe(takeUntil(this._unsubscribe$)).subscribe((res: UserStore) => {
       this.accountId = res?.accountId;
       this.FormControl['accountId'].setValue(this.accountId);
       this.FormControl['accountId'].disable();

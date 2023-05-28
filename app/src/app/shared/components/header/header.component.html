@@ -3,11 +3,8 @@
     <div class="d-flex align-items-center">
         <div (click)="menu.toggle($event)" class="d-flex gap-2 cursor-pointer align-items-center">
             <p-avatar icon="pi pi-user" size="large"
-                styleClass="bg-primary-color color-white" shape="circle"></p-avatar>
-            <div class="user-detail d-flex flex-column gap-0">
-                <b>{{userData?.firstName}} {{userData?.lastName}}</b>
-                <span class="fs-10">{{userData?.email}}</span>
-            </div>
+                styleClass="bg-primary-color color-white" shape="circle">
+            </p-avatar>
             <i class="pi pi-angle-down"></i>
         </div>
         <p-menu #menu [model]="optionList" [popup]="true"></p-menu>

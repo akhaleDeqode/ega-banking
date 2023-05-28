@@ -14,9 +14,7 @@
             </p>
         </li>
     </ul>
-
-    <small *ngIf="transactionList?.length">
-        Last <b>{{transactionList.length && transactionList.length > 10 ? 10 : transactionList.length}} </b>transactions</small>
+<p-paginator (onPageChange)="onPageChange($event)" [first]="activePage" [rows]="10" [totalRecords]="totalData"></p-paginator>
 </div>
 
 <ng-template #emptyScreen>

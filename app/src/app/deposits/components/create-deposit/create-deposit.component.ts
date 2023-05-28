@@ -41,7 +41,7 @@ export class CreateDepositComponent {
   }
 
   getStoreData(): void {
-    this._storeService.userData.pipe(takeUntil(this._unsubscribe$)).subscribe((res: UserStore) => {
+    this._storeService.UserData$.pipe(takeUntil(this._unsubscribe$)).subscribe((res: UserStore) => {
       console.log(res);
       this.accountId = res?.accountId;
       this.FormControl['accountId'].setValue(this.accountId);
