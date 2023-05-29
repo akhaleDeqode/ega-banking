@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { DashboardService } from 'src/app/core/services/dashboard.service';
 
@@ -10,21 +11,30 @@ import { DashboardService } from 'src/app/core/services/dashboard.service';
 export class RecentTransactionsComponent {
 
   transactionList: any[] = [];
+  totalData: number = 0;
+  activePage: number = 0;
   private _unsubscribe$ = new Subject<boolean>();
 
   constructor(
-    private _dashboardService: DashboardService
+    private _dashboardService: DashboardService,
+    private _activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this.getAllTransactions();
+    this._activatedRoute.queryParams.subscribe((res: any) => {
+      this.getAllTransactions(res);
+      if (res?.pageNumber) {
+        this.activePage = (res.pageNumber * 10);
+      }
+    });
   }
 
-  getAllTransactions(): void {
-    this._dashboardService.getAllTransactions().pipe(takeUntil(this._unsubscribe$)).subscribe({
+  getAllTransactions(queryParams: any): void {
+    this._dashboardService.getAllTransactions(queryParams).pipe(takeUntil(this._unsubscribe$)).subscribe({
       next: (res: any) => {
         console.log(res);
         this.transactionList = res?.transactionList;
+        this.totalData = res?.listSize;
       }
     });
   }

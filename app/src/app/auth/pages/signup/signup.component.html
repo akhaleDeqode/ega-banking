@@ -6,21 +6,33 @@
             class="d-flex flex-column gap-3 align-items-center justify-content-center login-form w-100">
             <div class="d-flex gap-3">
                 <div class="form-group">
-                    <input formControlName="firstName"
+                    <input formControlName="firstName" (blur)="_utility.removeSpaces(FormControl['firstName'])"
                         [class.input-invalid]="isFormSubmitted && FormControl['firstName'].invalid" type="text"
                         placeholder="First name" class="w-100" pInputText>
                     <div *ngIf="isFormSubmitted && FormControl['firstName'].invalid" class="error-msg">
-                        <p *ngIf="FormControl['firstName'].hasError('required')">First name is required</p>
-                        <p *ngIf="FormControl['firstName'].hasError('pattern')">Invalid First name</p>
+                        <p *ngIf="FormControl['firstName'].hasError('required')">{{errorMessage.required('First name')}}
+                        </p>
+                        <p *ngIf="FormControl['firstName'].hasError('minlength')">{{errorMessage.minLength(2)}}</p>
+                        <p *ngIf="FormControl['firstName'].hasError('maxlength')">{{errorMessage.maxLength(50)}}</p>
+                        <p
+                            *ngIf="FormControl['firstName'].hasError('pattern') && !FormControl['firstName'].hasError('minlength') && !FormControl['firstName'].hasError('maxlength')">
+                            {{errorMessage.invalid('First name')}}
+                        </p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <input formControlName="lastName"
+                    <input formControlName="lastName" (blur)="_utility.removeSpaces(FormControl['lastName'])"
                         [class.input-invalid]="isFormSubmitted && FormControl['lastName'].invalid" type="text"
                         placeholder="Last name" class="w-100" pInputText>
                     <div *ngIf="isFormSubmitted && FormControl['lastName'].invalid" class="error-msg">
-                        <p *ngIf="FormControl['lastName'].hasError('required')">Last name is required</p>
-                        <p *ngIf="FormControl['lastName'].hasError('pattern')">Invalid First name</p>
+                        <p *ngIf="FormControl['lastName'].hasError('required')">{{errorMessage.required('Last name')}}
+                        </p>
+                        <p *ngIf="FormControl['lastName'].hasError('minlength')">{{errorMessage.minLength(2)}}</p>
+                        <p *ngIf="FormControl['lastName'].hasError('maxlength')">{{errorMessage.maxLength(50)}}</p>
+                        <p
+                            *ngIf="FormControl['lastName'].hasError('pattern') && !FormControl['lastName'].hasError('minlength') && !FormControl['lastName'].hasError('maxlength')">
+                            {{errorMessage.invalid('Last name')}}
+                        </p>
                     </div>
                 </div>
 
@@ -29,29 +41,45 @@
                 <input formControlName="email" [class.input-invalid]="isFormSubmitted && FormControl['email'].invalid"
                     class="w-100" type="email" pInputText placeholder="Email">
                 <div *ngIf="isFormSubmitted && FormControl['email'].invalid" class="error-msg">
-                    <p *ngIf="FormControl['email'].hasError('required')">Email is required</p>
-                    <p *ngIf="FormControl['email'].hasError('email')">Invalid Email</p>
+                    <p *ngIf="FormControl['email'].hasError('required')">{{errorMessage.required('Email')}}</p>
+                    <p *ngIf="FormControl['email'].hasError('pattern')">{{errorMessage.invalid('Email')}}</p>
                 </div>
             </div>
             <div class="form-group w-100">
                 <p-password formControlName="password"
                     [class.input-invalid]="isFormSubmitted && FormControl['password'].invalid" styleClass="w-100"
-                    class="p-password w-100" [toggleMask]="true" [feedback]="false" placeholder="Password">
+                    class="p-password w-100" [toggleMask]="true" [feedback]="_utility.checkIfWebUser()" placeholder="Password">
+                    <ng-template pTemplate="header">
+                        <h6>Pick a password</h6>
+                    </ng-template>
+                    <ng-template pTemplate="footer">
+                        <!-- <p-divider></p-divider> -->
+                        <p class="mt-2">Suggestions</p>
+                        <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                            <li>At least one lowercase</li>
+                            <li>At least one uppercase</li>
+                            <li>At least one numeric</li>
+                            <li>At least one symbol</li>
+                            <li>Minimum 8 characters</li>
+                            <li>Maximum 16 characters</li>
+                        </ul>
+                    </ng-template>
                 </p-password>
                 <div *ngIf="isFormSubmitted && FormControl['password'].invalid" class="error-msg">
-                    <p *ngIf="FormControl['password'].hasError('required')">Password is required</p>
-                    <p *ngIf="FormControl['password'].hasError('minlength')">Minimum 8 characters are required</p>
-                    <p *ngIf="FormControl['password'].hasError('maxlength')">Maximum 16 characters are allowed</p>
-                    <p *ngIf="FormControl['password'].hasError('pattern') && !FormControl['password'].hasError('minlength') && !FormControl['password'].hasError('maxlength')">
-                        Must contain One uppercase, lowercase, number and symbol
+                    <p *ngIf="FormControl['password'].hasError('required')">{{errorMessage.required('Password')}}</p>
+                    <p *ngIf="FormControl['password'].hasError('minlength')">{{errorMessage.minLength(8)}}</p>
+                    <p *ngIf="FormControl['password'].hasError('maxlength')">{{errorMessage.maxLength(16)}}</p>
+                    <p
+                        *ngIf="FormControl['password'].hasError('pattern') && !FormControl['password'].hasError('minlength') && !FormControl['password'].hasError('maxlength')">
+                        {{errorMessage.passwordPattern()}}
                     </p>
-
                 </div>
             </div>
             <p-button class="w-100" styleClass="w-100" type="submit" label="Register"></p-button>
         </form>
 
-        <span class="mt-3">Already have an account? <a routerLink="/auth/login" href="javascript::"
-                class="color-primary">Login</a> </span>
+        <span class="mt-3">Already have an account?
+            <a routerLink="/auth/login" href="javascript::" class="color-primary">Login</a>
+        </span>
     </div>
 </div>

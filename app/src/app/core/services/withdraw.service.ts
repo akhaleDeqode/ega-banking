@@ -17,12 +17,22 @@ export class WithdrawService {
     private _utility: UtilityService
   ) { }
 
+  /**
+   * Function to send withdraw amount to server
+   * @param data Withdraw payload
+   * @returns `Observable`
+   */
   withdrawAmount(data: Withdraw): Observable<any> {
     return this._http.post(`${this._base}transaction/`, data).pipe(timeout(75000), catchError((error: HttpErrorResponse) => {
       throw error;
     }));
   }
 
+  /**
+   * Function to get all withdrawals made by user
+   * @param queryParams Query params for pagination
+   * @returns `Observable`
+   */
   getAllWithdrawals(queryParams?: any): Observable<any> {
     const query = this._utility.returnQueryParams(queryParams);
     return this._http.get(`${this._base}transaction/get/withdraws${query}`).pipe(timeout(75000), catchError((error: HttpErrorResponse) => {

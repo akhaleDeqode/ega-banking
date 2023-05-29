@@ -1,24 +1,13 @@
 <div class="card p-4 w-100">
     <p class="fw-700 fs-16">Recent Transactions</p>
-
-    <ul *ngIf="transactionList?.length; else emptyScreen" class="transaction-entry p-0">
-        <li *ngFor="let item of transactionList" class="d-flex justify-content-between w-100 border-bottom py-3">
-            <div>
-                <p pTooltip="Account Id" class="m-0 fw-600">{{item?.accountId}}</p>
-                <p class="m-0">{{item?.transactionDate}}</p>
-            </div>
-            <p class="m-0 fw-700 fs-22">${{item?.amount}}
-                <i [ngClass]="{'pi-arrow-down-left text-success': item?.transactionType == 'deposit', 'pi-arrow-up-right text-danger': item?.transactionType == 'withdraw'}"
-                    class="pi">
-                </i>
-            </p>
-        </li>
-    </ul>
-
-    <small *ngIf="transactionList?.length">
-        Last <b>{{transactionList.length && transactionList.length > 10 ? 10 : transactionList.length}} </b>transactions</small>
+    <ng-container *ngIf="transactionList.length; else emptyScreen">
+        <app-transaction-list [dataList]="transactionList" [activePage]="activePage" [totalData]="totalData">
+        </app-transaction-list>
+    </ng-container>
 </div>
 
 <ng-template #emptyScreen>
-    <app-empty-screen></app-empty-screen>
+    <div class="p-5">
+        <app-empty-screen></app-empty-screen>
+    </div>
 </ng-template>

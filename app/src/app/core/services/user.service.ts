@@ -14,6 +14,10 @@ export class UserService {
     private _http: HttpClient
   ) { }
 
+  /**
+   * Function to get logged in user's detail
+   * @returns `Observable`
+   */
   getUserDetail(): Observable<any> {
     return this._http.get(`${this._base}user/get`).pipe(timeout(75000), catchError((error: HttpErrorResponse) => {
       throw error;

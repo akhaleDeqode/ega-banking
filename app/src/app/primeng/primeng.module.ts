@@ -22,6 +22,7 @@ import { ToastModule } from 'primeng/toast';
 import { PasswordModule } from 'primeng/password';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { TooltipModule } from 'primeng/tooltip';
+import { PaginatorModule } from 'primeng/paginator';
 
 const primeNgModules = [
   ButtonModule,
@@ -46,7 +47,8 @@ const primeNgModules = [
   ToastModule,
   PasswordModule,
   TabMenuModule,
-  TooltipModule
+  TooltipModule,
+  PaginatorModule
 ]
 
 @NgModule({

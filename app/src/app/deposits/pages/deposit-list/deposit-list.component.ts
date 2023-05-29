@@ -12,11 +12,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class DepositListComponent {
 
-  projects: any[] = [];
-  ref!: DynamicDialogRef;
-  depositsList!: any[];
+  dialogRef!: DynamicDialogRef;
+  depositsList: any[] = [];
   totalData: number = 0;
-  currentPage: number = 0;
+  activePage: number = 0;
   private _unsubscribe$ = new Subject<boolean>();
 
   constructor(
@@ -30,7 +29,7 @@ export class DepositListComponent {
     this._activatedRoute.queryParams.subscribe((res: any) => {
       this.getAllDeposits(res);
       if (res?.pageNumber) {
-        this.currentPage = res?.pageNumber;
+        this.activePage = (res.pageNumber * 10);
       }
     });
   }
@@ -54,15 +53,15 @@ export class DepositListComponent {
   }
 
   showAddModal() {
-    this.ref = this.dialogService.open(CreateDepositComponent, {
+    this.dialogRef = this.dialogService.open(CreateDepositComponent, {
       header: 'Deposit Amount'
     });
     this.onCloseDialog();
   }
 
   onCloseDialog(): void {
-    this.ref.onClose.subscribe((res: any) => {
-      this.ngOnInit();
+    this.dialogRef.onClose.subscribe((res: any) => {
+      if (res) this.ngOnInit();
     });
   }
 

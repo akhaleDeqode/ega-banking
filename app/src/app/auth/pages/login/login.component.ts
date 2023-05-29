@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MessageService } from 'primeng/api';
 import { Subject, takeUntil } from 'rxjs';
+import { EMAIL_REGEX } from 'src/app/core/constants/custom-validators';
+import { ErrorMessages } from 'src/app/core/constants/error-messages';
 import { Login } from 'src/app/core/models/auth.model';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { LocalstorageService } from 'src/app/core/services/localstorage.service';
@@ -17,6 +18,7 @@ export class LoginComponent {
 
   isFormSubmitted: boolean = false;
   loginForm!: FormGroup;
+  errorMessage = new ErrorMessages();
   private _unsubscribe$ = new Subject<boolean>();
 
   constructor(
@@ -29,15 +31,21 @@ export class LoginComponent {
 
   ngOnInit(): void {
     this.loginForm = this._formBuilder.group({
-      email: [null, [Validators.required, Validators.email]],
+      email: [null, [Validators.required, Validators.pattern(EMAIL_REGEX)]],
       password: [null, Validators.required]
     });
   }
 
+  /**
+   * Getter function for login form controls
+   */
   get FormControl() {
     return this.loginForm.controls;
   }
 
+  /**
+   * Submit login form details to API
+   */
   submit(): void {
     this.isFormSubmitted = true;
     console.log(this.loginForm.value);

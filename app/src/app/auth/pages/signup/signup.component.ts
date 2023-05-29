@@ -2,9 +2,12 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
+import { EMAIL_REGEX, MAX_FIRST_NAME, MAX_PASSWORD, MAX_lAST_NAME, MIN_FIRST_NAME, MIN_PASSWORD, NAME_REGEX, PASSWORD_REGEX } from 'src/app/core/constants/custom-validators';
+import { ErrorMessages } from 'src/app/core/constants/error-messages';
 import { Signup } from 'src/app/core/models/auth.model';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
+import { UtilityService } from 'src/app/core/services/utility.service';
 
 @Component({
   selector: 'app-signup',
@@ -15,28 +18,36 @@ export class SignupComponent {
 
   signupForm!: FormGroup;
   isFormSubmitted: boolean = false;
+  errorMessage = new ErrorMessages();
   private _unsubscribe$ = new Subject<boolean>();
 
   constructor(
     private _formBuilder: FormBuilder,
     private _authService: AuthService,
     private _router: Router,
-    private _toasterService: ToasterService
+    private _toasterService: ToasterService,
+    public _utility: UtilityService
   ) { }
 
   ngOnInit(): void {
     this.signupForm = this._formBuilder.group({
-      firstName: [null, [Validators.required]],
-      lastName: [null, [Validators.required]],
-      email: [null, [Validators.required, Validators.email]],
-      password: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(16), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/)]]
+      firstName: [null, [Validators.required, Validators.minLength(MIN_FIRST_NAME), Validators.maxLength(MAX_FIRST_NAME), Validators.pattern(NAME_REGEX)]],
+      lastName: [null, [Validators.required, Validators.minLength(MIN_FIRST_NAME), Validators.maxLength(MAX_lAST_NAME), Validators.pattern(NAME_REGEX)]],
+      email: [null, [Validators.required, Validators.pattern(EMAIL_REGEX)]],
+      password: [null, [Validators.required, Validators.minLength(MIN_PASSWORD), Validators.maxLength(MAX_PASSWORD), Validators.pattern(PASSWORD_REGEX)]]
     });
   }
 
+  /**
+   * Getter function for signup form controls
+   */
   get FormControl() {
     return this.signupForm.controls;
   }
 
+  /**
+   * Submit signup form details to API
+   */
   submit(): void {
     this.isFormSubmitted = true;
     // console.log(this.signupForm.value);

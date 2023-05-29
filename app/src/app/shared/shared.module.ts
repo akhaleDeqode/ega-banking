@@ -7,22 +7,27 @@ import { CardLoaderComponent } from './components/card-loader/card-loader.compon
 import { PrimengModule } from '../primeng/primeng.module';
 import { RouterModule } from '@angular/router';
 import { EmptyScreenComponent } from './components/empty-screen/empty-screen.component';
+import { TransactionListComponent } from './components/transaction-list/transaction-list.component';
 
-
+const EXPORT_COMPONENTS = [
+  HeaderComponent,
+  CardLoaderComponent,
+  EmptyScreenComponent,
+  TransactionListComponent
+]
 
 @NgModule({
   declarations: [
-    HeaderComponent,
+    ...EXPORT_COMPONENTS,
     SidebarComponent,
     ProjectLayoutComponent,
-    CardLoaderComponent,
-    EmptyScreenComponent
+    TransactionListComponent
   ],
   imports: [
     CommonModule,
     PrimengModule,
     RouterModule
   ],
-  exports: [HeaderComponent, PrimengModule, CardLoaderComponent, EmptyScreenComponent]
+  exports: [...EXPORT_COMPONENTS, PrimengModule]
 })
 export class SharedModule { }

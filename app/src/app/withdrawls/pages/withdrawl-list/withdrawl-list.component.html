@@ -1,30 +1,44 @@
-<div class="card">
-    <p-table [value]="withdrawsList" (onPage)="onPageChange($event)" [lazy]="true" [first]="(10*currentPage)" [totalRecords]="totalData" [resizableColumns]="true"
-        styleClass="p-datatable-gridlines" [tableStyle]="{'min-width': '40rem'}" [paginator]="true" [rows]="10"
-        [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
-        <ng-template pTemplate="caption">
-            <div class="d-flex justify-content-end">
-                <button pbutton="" icon="pi pi-plus" label="New"
-                    class="float-end p-element p-button-outlined w-full sm:w-auto flex-order-0 sm:flex-order-1 p-button p-component"
-                    (click)="showAddModal()">
-                    <span class="p-button-icon p-button-icon-left pi pi-plus" aria-hidden="true"></span>
-                    <span class="p-button-label">New</span>
-                </button>
-            </div>
-        </ng-template>
-        <ng-template pTemplate="header">
-            <tr>
-                <th pResizableColumn style="width:20%">Date</th>
-                <th pResizableColumn style="width:20%">Account ID</th>
-                <th pResizableColumn style="width:20%">Amount</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-withdraw>
-            <tr>
-                <td> {{ withdraw.transactionDate}}</td>
-                <td> {{ withdraw.accountId}}</td>
-                <td class="fw-600"> ${{ withdraw.amount}}</td>
-            </tr>
-        </ng-template>
-    </p-table>
+<div class="card p-3">
+
+    <div [ngClass]="{'w-100 p-5 justify-content-center': !withdrawsList.length}" class="d-flex justify-content-end">
+        <button pbutton="" icon="pi pi-plus" label="New"
+            class="float-end p-element p-button-outlined w-full sm:w-auto flex-order-0 sm:flex-order-1 p-button p-component"
+            (click)="showAddModal()">
+            <span class="p-button-icon p-button-icon-left pi pi-plus" aria-hidden="true"></span>
+            <span class="p-button-label">New</span>
+        </button>
+    </div>
+
+    <ng-container *ngIf="withdrawsList.length">
+        <app-transaction-list [dataList]="withdrawsList" [activePage]="activePage"
+            [totalData]="totalData">
+        </app-transaction-list>
+        <!-- <p-table [value]="withdrawsList" (onPage)="onPageChange($event)" [lazy]="true" [first]="(10*currentPage)"
+            [totalRecords]="totalData" [resizableColumns]="true" styleClass="p-datatable-gridlines"
+            [tableStyle]="{'min-width': '40rem'}" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pResizableColumn style="width:20%">Date</th>
+                    <th pResizableColumn style="width:20%">Account ID</th>
+                    <th pResizableColumn style="width:20%">Transaction ID</th>
+                    <th pResizableColumn style="width:20%">Amount</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-withdraw>
+                <tr>
+                    <td> {{ withdraw.transactionDate}}</td>
+                    <td> {{ withdraw.accountId}}</td>
+                    <td> {{ withdraw.transactionId}}</td>
+                    <td class="fw-600"> ${{ withdraw.amount}}</td>
+                </tr>
+            </ng-template>
+        </p-table> -->
+    </ng-container>
 </div>
+
+<ng-template #emptyScreen>
+    <div class="p-5">
+        <app-empty-screen></app-empty-screen>
+    </div>
+</ng-template>

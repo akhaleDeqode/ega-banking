@@ -8,8 +8,8 @@
                 <input formControlName="email" [class.input-invalid]="isFormSubmitted && FormControl['email'].invalid"
                     class="w-100" type="email" pInputText placeholder="Email">
                 <div *ngIf="isFormSubmitted && FormControl['email'].invalid" class="error-msg">
-                    <p *ngIf="FormControl['email'].hasError('required')">Email is required</p>
-                    <p *ngIf="FormControl['email'].hasError('email')">Invalid Email</p>
+                    <p *ngIf="FormControl['email'].hasError('required')">{{errorMessage.required('Email')}}</p>
+                    <p *ngIf="FormControl['email'].hasError('email')">{{errorMessage.invalid('Email')}}</p>
                 </div>
             </div>
             <div class="form-group w-100">
@@ -18,7 +18,7 @@
                     [toggleMask]="true" [feedback]="false" placeholder="Password" styleClass="w-100">
                 </p-password>
                 <div *ngIf="isFormSubmitted && FormControl['password'].invalid" class="error-msg">
-                    <p *ngIf="FormControl['password'].hasError('required')">Password is required</p>
+                    <p *ngIf="FormControl['password'].hasError('required')">{{errorMessage.required('Password')}}</p>
                 </div>
             </div>
             <p-button class="w-100" styleClass="w-100" type="submit" label="Login"></p-button>
