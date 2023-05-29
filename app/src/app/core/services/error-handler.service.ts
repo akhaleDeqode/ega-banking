@@ -21,7 +21,7 @@ export class ErrorHandlerService {
     // console.log(error);
     if (error.status == 403) {
       this._authService.logout();
-      // this._router.navigate(['/auth/login']);
+      this._router.navigate(['/auth/login']);
     }
     this._toasterService.error('Error', error?.error?.message || 'Something went wrong');
   }
