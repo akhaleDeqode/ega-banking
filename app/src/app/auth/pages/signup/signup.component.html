@@ -48,7 +48,7 @@
             <div class="form-group w-100">
                 <p-password formControlName="password"
                     [class.input-invalid]="isFormSubmitted && FormControl['password'].invalid" styleClass="w-100"
-                    class="p-password w-100" [toggleMask]="true" placeholder="Password">
+                    class="p-password w-100" [toggleMask]="true" [feedback]="_utility.checkIfWebUser()" placeholder="Password">
                     <ng-template pTemplate="header">
                         <h6>Pick a password</h6>
                     </ng-template>
@@ -63,7 +63,8 @@
                             <li>Minimum 8 characters</li>
                             <li>Maximum 16 characters</li>
                         </ul>
-                    </ng-template> </p-password>
+                    </ng-template>
+                </p-password>
                 <div *ngIf="isFormSubmitted && FormControl['password'].invalid" class="error-msg">
                     <p *ngIf="FormControl['password'].hasError('required')">{{errorMessage.required('Password')}}</p>
                     <p *ngIf="FormControl['password'].hasError('minlength')">{{errorMessage.minLength(8)}}</p>

@@ -59,4 +59,24 @@ export class UtilityService {
     }
     return query != "" ? "?" + query : "";
   }
+
+  /**
+   * Checks if user is browsing in PC or Mobile devices
+   * @returns `True` - if user is browsing in PC device
+   * @returns `False` - if user is browsing in Mobile device
+   */
+  checkIfWebUser(): boolean {
+    if (navigator.userAgent.match(/Android/i)
+      || navigator.userAgent.match(/webOS/i)
+      || navigator.userAgent.match(/iPhone/i)
+      || navigator.userAgent.match(/iPad/i)
+      || navigator.userAgent.match(/iPod/i)
+      || navigator.userAgent.match(/BlackBerry/i)
+      || navigator.userAgent.match(/Windows Phone/i)) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
 }
