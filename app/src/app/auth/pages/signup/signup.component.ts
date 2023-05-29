@@ -38,10 +38,16 @@ export class SignupComponent {
     });
   }
 
+  /**
+   * Getter function for signup form controls
+   */
   get FormControl() {
     return this.signupForm.controls;
   }
 
+  /**
+   * Submit signup form details to API
+   */
   submit(): void {
     this.isFormSubmitted = true;
     // console.log(this.signupForm.value);

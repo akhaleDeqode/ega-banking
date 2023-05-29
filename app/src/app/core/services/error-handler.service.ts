@@ -17,6 +17,10 @@ export class ErrorHandlerService {
     private _router: Router
   ) { }
 
+  /**
+   * Function to handle error based on error codes
+   * @param error HttpErrorResponse
+   */
   handleError(error: HttpErrorResponse): void {
     // console.log(error);
     if (error.status == 403) {

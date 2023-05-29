@@ -17,18 +17,31 @@ export class AuthService {
     private _localStorageService: LocalstorageService
   ) { }
 
+  /**
+   * Function to send signup details to server
+   * @param {Signup} data 
+   * @returns `Observable`
+   */
   signup(data: Signup): Observable<any> {
     return this._http.post(`${this._base}user/register`, data).pipe(timeout(75000), catchError((error: HttpErrorResponse) => {
       throw error;
     }));
   }
 
+  /**
+   * Function to send login details to server
+   * @param {Login} data 
+   * @returns {Observable}
+   */
   login(data: Login): Observable<any> {
     return this._http.post(`${this._base}auth/login`, data).pipe(timeout(75000), catchError((error: HttpErrorResponse) => {
       throw error;
     }));
   }
 
+  /**
+   * Function to logout user
+   */
   logout(): void {
     this._localStorageService.removeToken();
   }

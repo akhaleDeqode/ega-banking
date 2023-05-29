@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { EMAIL_REGEX } from 'src/app/core/constants/custom-validators';
@@ -36,10 +36,16 @@ export class LoginComponent {
     });
   }
 
+  /**
+   * Getter function for login form controls
+   */
   get FormControl() {
     return this.loginForm.controls;
   }
 
+  /**
+   * Submit login form details to API
+   */
   submit(): void {
     this.isFormSubmitted = true;
     console.log(this.loginForm.value);

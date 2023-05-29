@@ -17,12 +17,22 @@ export class DepositService {
     private _utility: UtilityService
   ) { }
 
+  /**
+   * Function to send deposit payload to server
+   * @param {Deposit} data
+   * @returns `Observable`
+   */
   depositAmount(data: Deposit): Observable<any> {
     return this._http.post(`${this._base}transaction/`, data).pipe(timeout(75000), catchError((error: HttpErrorResponse) => {
       throw error;
     }));
   }
 
+  /**
+   * Function to get all deposits made by user
+   * @param queryParams Query params for pagination
+   * @returns `Observable`
+   */
   getAllDeposits(queryParams?: any): Observable<any> {
     let query = this._utility.returnQueryParams(queryParams);
     return this._http.get(`${this._base}transaction/get/deposits${query}`).pipe(timeout(75000), catchError((error: HttpErrorResponse) => {
