@@ -14,7 +14,7 @@ public class TestConstants {
     public static final int UPDATED_AMOUNT_DEPOSIT = 600;
     public static final int UPDATED_AMOUNT_WITHDRAW = 400;
     public static final int INSUFFICIENT_BALANCE = 50;
-    public static final String USER_PASSWORD = "testPassword";
+    public static final String USER_PASSWORD = "Aman@123";
     public static final String ENCRYPTED_USER_PASSWORD = "hashedPassword";
 
 

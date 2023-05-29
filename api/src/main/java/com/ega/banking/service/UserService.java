@@ -3,9 +3,11 @@ package com.ega.banking.service;
 import com.ega.banking.entity.User;
 import com.ega.banking.error.InvalidUserIdException;
 import com.ega.banking.error.UserNotExistException;
+import com.ega.banking.error.WeakPasswordException;
 import com.ega.banking.repository.AccountRepository;
 import com.ega.banking.repository.UserRepository;
 import com.ega.banking.util.AccountUtil;
+import com.ega.banking.util.UserUtil;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -31,6 +33,9 @@ public class UserService {
 
     @Transactional
     public void registerUser(User user) {
+        if (!UserUtil.isValidPassword(user.getPassword()))
+            throw new WeakPasswordException();
+
         List<Long> allAccountNumber= accountRepository.getAllAccountId();
         Long accountNumber = accountUtil.generateAccountNumber(allAccountNumber);
         accountUtil.addAccount(accountNumber);

@@ -1,5 +1,6 @@
 package com.ega.banking.error;
 
+import com.ega.banking.constants.ApplicationConstants;
 import com.ega.banking.constants.ErrorMessages;
 import com.ega.banking.constants.HttpStatusCodes;
 import com.ega.banking.dto.ExcetionDto;
@@ -90,6 +91,13 @@ public class RestExceptionHandler {
     public ResponseEntity<?> handleInvalidAmountException() {
         return ResponseEntity.status(HttpStatusCodes.BAD_REQUEST)
                 .body(ExcetionDto.builder().message(ErrorMessages.INVALID_AMOUNT)
+                        .build());
+    }
+
+    @ExceptionHandler(WeakPasswordException.class)
+    public ResponseEntity<?> handleWeakPasswordException() {
+        return ResponseEntity.status(HttpStatusCodes.BAD_REQUEST)
+                .body(ExcetionDto.builder().message(ApplicationConstants.WEAK_PASSWORD)
                         .build());
     }
 }

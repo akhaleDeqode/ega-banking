@@ -41,7 +41,6 @@ public class User implements UserDetails {
     @Size(min = 3, max = 10, message = ApplicationConstants.INVALID_LAST_NAME)
     private String lastName;
 
-    @NotBlank(message = ApplicationConstants.INVALID_PASSWORD)
     private String password;
 
     @Pattern(regexp = "^[A-Za-z0-9+_.-]+@(.+).com$", message = ApplicationConstants.INVALID_EMAIL)
