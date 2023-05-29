@@ -2,7 +2,7 @@
 
 ### Login Page
 
-![login page](/public/Login-page.png?raw=true)
+![login page](/public/login-page.png?raw=true)
 
 ### Signup Page
 
@@ -10,15 +10,23 @@
 
 ### Dashboard Page
 
-![dashboard page](/public/dashboard-page.png?raw=true)
+![dashboard page](/public/dashboard.png?raw=true)
 
 ### Deposits Page
 
-![deposits page](/public/deposits-page.png?raw=true)
+![deposits page](/public/deposit-page.png?raw=true)
+
+### Deposit Amount
+
+![deposits page](/public/add-deposit.png?raw=true)
 
 ### Withdraw Page
 
-![withdraw page](/public/withdrawals-page.png?raw=true)
+![withdraw page](/public/withdraw-page.png?raw=true)
+
+### Withdraw Amount
+
+![withdraw page](/public/withdraw-amount.png?raw=true)
 
 ## Prerequisites
 
